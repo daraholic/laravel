@@ -36,9 +36,30 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        // 確認資料送過來
+        // 存入資料
+        // 商業邏輯
+        // 回去首頁
         $input=$request->all();
         $input=$request->except('_token');
+        
+        // 存入學生資料
+        $data=new Student;
+        $data->name =$input['name'];
+        $data->chinese =$input['chinese'];
+        $data->english =$input['english'];
+        $data->math =$input['math'];
+        $data->love =$input['love'];
+        $data->save();
+        $student_id=$data->id;
 
+        // 存入電話
+        $data=new Phone;
+        $dataPhone->name =$input['phone'];
+        $dataPhone->student_id =$student_id;
+        $dataPhone->save();
+
+        
 
     }
 
